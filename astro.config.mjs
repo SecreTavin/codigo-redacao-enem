@@ -5,6 +5,6 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   // Troque pelo domínio final — usado em canonical, og:image e JSON-LD.
-  site: process.env.SITE_URL ?? 'https://codigo-redacao.pages.dev',
+  site: process.env.SITE_URL ?? 'https://codigo-redacao.metal-rush.workers.dev',
   vite: { plugins: [tailwindcss()] },
 });

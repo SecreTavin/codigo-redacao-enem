@@ -17,11 +17,11 @@ npm run deploy   # build + wrangler deploy (Cloudflare)
 
 | Campo | O que é |
 | --- | --- |
-| `checkoutUrl` | **Obrigatório.** Link do checkout da Cakto. Sem ele, os botões rolam até a oferta. |
+| `checkoutUrl` | **Obrigatório.** Link do checkout da Kiwify. Sem ele, os botões rolam até a oferta. |
 | `supportWhatsapp` / `supportEmail` | Aparece no FAQ. |
 | `appUrl`, `appName` | Nome/link do app bônus. |
 | `anchorPrice` | Preço "de" riscado (opcional). |
-| `guaranteeDays` | Prazo de arrependimento exibido (padrão 7 — CDC art. 49). Configure o mesmo prazo na Cakto. |
+| `guaranteeDays` | Prazo de arrependimento exibido (padrão 7 — CDC art. 49). Configure o mesmo prazo na Kiwify. |
 | `analytics.metaPixelId` / `ga4Id` | Pixel do Meta e GA4. Os eventos `InitiateCheckout` / `begin_checkout` já disparam nos botões. |
 
 Também troque o domínio em `astro.config.mjs` (ou defina `SITE_URL` no build).

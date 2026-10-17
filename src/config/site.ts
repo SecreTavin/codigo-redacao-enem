@@ -14,8 +14,8 @@ export const site = {
   /** Preço "âncora" opcional (ex.: 97). Deixe null para não exibir. */
   anchorPrice: null as number | null,
 
-  /** Link do checkout Cakto. UTMs da URL atual são repassados automaticamente. */
-  checkoutUrl: '',
+  /** Link do checkout Kiwify. UTMs da URL atual são repassados automaticamente. */
+  checkoutUrl: 'https://pay.kiwify.com.br/OvSDrOL',
   /** Link do app bônus (opcional). */
   appUrl: '',
   appName: 'app de estudos',

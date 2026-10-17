@@ -128,7 +128,7 @@ export const faq = [
   },
   {
     q: 'É seguro comprar?',
-    a: 'Sim. O pagamento é processado pela Cakto, em ambiente seguro. Seus dados de pagamento não passam por este site.',
+    a: 'Sim. O pagamento é processado pela Kiwify, em ambiente seguro. Seus dados de pagamento não passam por este site.',
   },
   {
     q: 'Vocês garantem nota?',
