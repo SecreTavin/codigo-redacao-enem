@@ -10,7 +10,7 @@ Landing page de alta conversão para o ebook **Código Redação ENEM 2026 — O
 npm install
 npm run dev      # http://localhost:4321
 npm run build    # gera ./dist
-npm run deploy   # build + wrangler deploy (Cloudflare)
+npm run deploy   # build + Cloudflare Pages
 ```
 
 ## Antes de publicar — preencha `src/config/site.ts`
