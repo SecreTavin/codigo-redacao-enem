@@ -1,0 +1,54 @@
+---
+import Legal from '../layouts/Legal.astro';
+import { site, brl, supportContact } from '../config/site';
+const { seller } = site;
+---
+
+<Legal title="Termos de Compra" description="Condições de compra, entrega, arrependimento e uso do ebook Código Redação ENEM 2026.">
+  <p>
+    Ao comprar o <strong>{site.productName}</strong> você concorda com estes termos. O produto é vendido por
+    {seller.name ? <> {seller.name}{seller.document && <>, CPF/CNPJ {seller.document}</>}</> : ' seu produtor, identificado no rodapé'},
+    e o pagamento é processado pela Kiwify.
+  </p>
+
+  <h2>1. O produto</h2>
+  <p>
+    Ebook digital em PDF, com os conteúdos descritos na página de vendas, e acesso bônus a um app de estudos com 7 dias grátis.
+    Preço: {brl(site.price)}, em pagamento único. Não há envio físico.
+  </p>
+
+  <h2>2. Entrega</h2>
+  <p>
+    O acesso é enviado ao e-mail informado no checkout assim que o pagamento é confirmado pela Kiwify. Pagamentos por boleto
+    podem levar até 3 dias úteis para compensar.
+  </p>
+
+  <h2>3. Direito de arrependimento e reembolso</h2>
+  <p>
+    Conforme o art. 49 do Código de Defesa do Consumidor, você pode desistir da compra em até
+    <strong>{site.guaranteeDays ?? 7} dias</strong> contados da compra, sem precisar justificar. O reembolso integral é solicitado
+    pela própria Kiwify (no e-mail de confirmação da compra ou na área de membros) ou pelos nossos canais de atendimento.
+  </p>
+
+  <h2>4. Uso permitido</h2>
+  <p>
+    A licença é pessoal e intransferível. É proibido revender, compartilhar, publicar ou distribuir o material, no todo ou em
+    parte, sem autorização. O conteúdo é protegido pela Lei de Direitos Autorais (Lei 9.610/1998).
+  </p>
+
+  <h2>5. Sem garantia de resultado</h2>
+  <p>
+    O material oferece método e orientação de estudo. A nota depende do seu desempenho na prova e da correção oficial, por isso
+    não garantimos nota nem aprovação. Este é um material independente, sem vínculo com o Inep ou o MEC.
+  </p>
+
+  <h2>6. Atendimento</h2>
+  <p>
+    Dúvidas, problemas de acesso ou pedidos de reembolso:
+    {supportContact ? <a href={supportContact.href}>{supportContact.label}</a> : 'pelo canal informado no e-mail de compra'}.
+    {seller.address && <> Endereço: {seller.address}.</>}
+  </p>
+
+  <h2>7. Lei aplicável</h2>
+  <p>Estes termos seguem a legislação brasileira, em especial o Código de Defesa do Consumidor e o Decreto 7.962/2013.</p>
+</Legal>

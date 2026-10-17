@@ -1,0 +1,29 @@
+---
+/**
+ * Consentimento de cookies (LGPD, art. 7º, I e ANPD — Guia de Cookies).
+ * Só é renderizado quando há Pixel/GA4 configurado; nada de rastreamento
+ * carrega antes do "Aceitar".
+ */
+---
+
+<div
+  class="fixed inset-x-3 bottom-3 z-[60] hidden max-w-lg rounded-2xl border border-ink/10 bg-white p-5 text-sm shadow-2xl sm:left-6 sm:bottom-6"
+  role="dialog"
+  aria-live="polite"
+  aria-label="Preferências de cookies"
+  data-consent
+>
+  <p class="leading-relaxed text-ink">
+    Usamos cookies de medição (Meta e Google) para entender de onde vêm nossos visitantes. Eles só são ativados com a sua
+    permissão. <a href="/privacidade" class="font-semibold text-pen underline underline-offset-2">Saiba mais</a>.
+  </p>
+  <div class="mt-4 flex gap-2">
+    <button type="button" data-consent-choice="granted" class="flex-1 rounded-xl bg-ink px-4 py-2.5 font-semibold text-paper hover:bg-ink-2">Aceitar</button>
+    <button type="button" data-consent-choice="denied" class="flex-1 rounded-xl border border-ink/20 px-4 py-2.5 font-semibold text-ink hover:bg-paper">Recusar</button>
+  </div>
+</div>
+
+<script>
+  import { initConsent } from '../scripts/consent';
+  initConsent();
+</script>

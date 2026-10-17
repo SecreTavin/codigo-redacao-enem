@@ -1,27 +1,25 @@
 ---
 import '../styles/global.css';
-import { site } from '../config/site';
+import { site, hasAnalytics } from '../config/site';
+import ConsentBanner from '../components/ConsentBanner.astro';
+import interUrl from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import frauncesUrl from '@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2?url';
 
-const title = `${site.productName} — ${site.tagline}`;
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+  jsonLd?: object;
+}
+
+const {
+  title = `${site.productName} — ${site.tagline}`,
+  description = site.description,
+  noindex = false,
+  jsonLd,
+} = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL('/og.png', Astro.site);
-const { metaPixelId, ga4Id } = site.analytics;
-
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Product',
-  name: site.productName,
-  description: site.description,
-  image: ogImage.href,
-  brand: { '@type': 'Brand', name: 'Código Redação' },
-  offers: {
-    '@type': 'Offer',
-    price: site.price.toFixed(2),
-    priceCurrency: 'BRL',
-    availability: 'https://schema.org/InStock',
-    url: canonical.href,
-  },
-};
 ---
 
 <!doctype html>
@@ -30,47 +28,36 @@ const jsonLd = {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{title}</title>
-    <meta name="description" content={site.description} />
+    <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
     <meta name="theme-color" content="#f6f2e8" />
+    <meta name="color-scheme" content="light" />
+    <link rel="preload" href={interUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={frauncesUrl} as="font" type="font/woff2" crossorigin />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <meta property="og:type" content="product" />
+    <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content={site.productName} />
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={site.description} />
+    <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Capa do ebook Código Redação ENEM 2026" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
     <script is:inline>document.documentElement.classList.add('js');</script>
-
-    {ga4Id && (
-      <>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`} />
-        <script is:inline define:vars={{ ga4Id }}>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          window.gtag = gtag; gtag('js', new Date()); gtag('config', ga4Id);
-        </script>
-      </>
-    )}
-    {metaPixelId && (
-      <script is:inline define:vars={{ metaPixelId }}>
-        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-        document,'script','https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', metaPixelId); fbq('track', 'PageView');
-      </script>
-    )}
   </head>
   <body>
     <a href="#conteudo" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-lg focus:bg-ink focus:px-4 focus:py-2 focus:text-paper">
       Pular para o conteúdo
     </a>
     <slot />
+    {hasAnalytics && <ConsentBanner />}
   </body>
 </html>

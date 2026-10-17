@@ -1,11 +1,6 @@
 import { site } from '../config/site';
 
-declare global {
-  interface Window {
-    gtag?: (...args: unknown[]) => void;
-    fbq?: (...args: unknown[]) => void;
-  }
-}
+import './consent';
 
 const $$ = <T extends Element = HTMLElement>(sel: string, root: ParentNode = document) =>
   Array.from(root.querySelectorAll<T>(sel));
@@ -116,7 +111,7 @@ function initStickyBar() {
 
 /* ---------- Diagnóstico Anti-Zero ---------- */
 function initQuiz() {
-  const form = document.querySelector<HTMLFormElement>('[data-quiz]');
+  const form = document.querySelector<HTMLElement>('[data-quiz]');
   if (!form) return;
   const rows = $$('li[data-fix]', form);
   const result = form.querySelector<HTMLElement>('[data-quiz-result]')!;
@@ -125,7 +120,7 @@ function initQuiz() {
   let tracked = false;
 
   form.addEventListener('change', () => {
-    const answers = rows.map((_, i) => (form.elements.namedItem(`q${i}`) as RadioNodeList).value);
+    const answers = rows.map((_, i) => form.querySelector<HTMLInputElement>(`input[name=q${i}]:checked`)?.value ?? '');
     const answered = answers.filter(Boolean).length;
     if (answered < rows.length) {
       hint.textContent = `${answered} de ${rows.length} respondidas`;

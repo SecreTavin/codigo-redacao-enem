@@ -21,6 +21,7 @@ npm run deploy   # build + Cloudflare Pages
 | `supportWhatsapp` / `supportEmail` | Aparece no FAQ. |
 | `appUrl`, `appName` | Nome/link do app bônus. |
 | `anchorPrice` | Preço "de" riscado (opcional). |
+| `seller.name` / `seller.document` / `seller.address` | **Obrigatório por lei** (Decreto 7.962/2013): nome/razão social, CPF/CNPJ e endereço do vendedor. O build avisa se estiver vazio. |
 | `guaranteeDays` | Prazo de arrependimento exibido (padrão 7 — CDC art. 49). Configure o mesmo prazo na Kiwify. |
 | `analytics.metaPixelId` / `ga4Id` | Pixel do Meta e GA4. Os eventos `InitiateCheckout` / `begin_checkout` já disparam nos botões. |
 
@@ -36,6 +37,14 @@ Também troque o domínio em `astro.config.mjs` (ou defina `SITE_URL` no build).
 - Conteúdo original enxugado: dor + virada viraram uma só seção, bônus entrou na caixa de oferta.
 - SEO: JSON-LD de Produto e FAQ, Open Graph com imagem para WhatsApp/Instagram.
 - Acessibilidade: contraste AA, foco visível, `prefers-reduced-motion`, FAQ com `<details>` nativo.
+
+## Segurança, privacidade e normas
+
+- **Cabeçalhos de segurança** gerados no build (`scripts/postbuild.mjs` → `dist/_headers`): CSP estrita com hash SHA-256 dos scripts inline, HSTS, `X-Frame-Options: DENY`, `nosniff`, `Referrer-Policy`, `Permissions-Policy`, COOP.
+- **LGPD:** Pixel/GA4 só carregam após consentimento explícito (banner aparece apenas se houver ID configurado); Política de Privacidade em `/privacidade`; link "Preferências de cookies" no rodapé.
+- **CDC / Decreto 7.962:** Termos de Compra em `/termos` (arrependimento de 7 dias, entrega, licença de uso) e identificação do vendedor no rodapé.
+- **Acessibilidade:** contraste WCAG AA verificado, HTML validado (html-validate), Lighthouse 100 em acessibilidade.
+- **SEO:** `robots.txt`, `sitemap.xml`, 404 próprio, JSON-LD de Produto e FAQ.
 
 ## Estrutura
 

@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/postbuild.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "deploy": "npm run build && npx wrangler pages deploy --branch main",
@@ -20,5 +20,10 @@
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.4.0",
     "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@types/node": "^26.6.5",
+    "typescript": "^6.0.3"
   }
 }

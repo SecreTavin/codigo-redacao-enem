@@ -27,6 +27,22 @@ export const site = {
   supportWhatsapp: '',
   supportEmail: '',
 
+  /**
+   * Identificação do vendedor — OBRIGATÓRIA por lei (Decreto 7.962/2013, art. 2º)
+   * e usada como "controlador" na Política de Privacidade (LGPD).
+   */
+  seller: {
+    /** Nome completo (pessoa física) ou razão social. */
+    name: '',
+    /** CPF ou CNPJ. */
+    document: '',
+    /** Endereço físico (cidade/UF no mínimo; completo se for empresa). */
+    address: '',
+  },
+
+  /** Data da última atualização dos documentos legais. */
+  legalUpdatedAt: '17 de outubro de 2026',
+
   examDateIso: '2026-11-08T13:30:00-03:00',
   examDateLabel: '8 de novembro de 2026, às 13h30 (Brasília)',
 
@@ -37,6 +53,14 @@ export const site = {
     ga4Id: '',
   },
 } as const;
+
+export const hasAnalytics = Boolean(site.analytics.metaPixelId || site.analytics.ga4Id);
+
+export const supportContact = site.supportWhatsapp
+  ? { href: `https://wa.me/${site.supportWhatsapp}`, label: 'WhatsApp' }
+  : site.supportEmail
+    ? { href: `mailto:${site.supportEmail}`, label: site.supportEmail }
+    : null;
 
 export const brl = (v: number) =>
   v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });

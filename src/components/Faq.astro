@@ -1,11 +1,6 @@
 ---
 import { faq } from '../data/content';
-import { site } from '../config/site';
-const contact = site.supportWhatsapp
-  ? { href: `https://wa.me/${site.supportWhatsapp}`, label: 'Fale com a gente no WhatsApp' }
-  : site.supportEmail
-    ? { href: `mailto:${site.supportEmail}`, label: site.supportEmail }
-    : null;
+import { supportContact } from '../config/site';
 const ld = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -19,8 +14,8 @@ const ld = {
     <div>
       <p class="eyebrow text-pen" data-reveal>Dúvidas frequentes</p>
       <h2 class="h-display mt-4 text-4xl sm:text-5xl" data-reveal>Perguntas que você provavelmente está fazendo agora.</h2>
-      {contact && (
-        <p class="mt-6 text-muted" data-reveal>Ainda com dúvida? <a class="font-semibold text-pen underline underline-offset-4" href={contact.href}>{contact.label}</a></p>
+      {supportContact && (
+        <p class="mt-6 text-muted" data-reveal>Ainda com dúvida? <a class="font-semibold text-pen underline underline-offset-4" href={supportContact.href}>{supportContact.label}</a></p>
       )}
     </div>
     <div class="divide-y divide-ink/10 border-y border-ink/10" data-faq>

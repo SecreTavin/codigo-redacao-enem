@@ -19,8 +19,8 @@ import { compare } from '../data/content';
       {compare.map(([k, a, b]) => (
         <div class="grid grid-cols-[1fr_1fr] border-t border-ink/10 md:grid-cols-[0.6fr_1fr_1fr]">
           <div class="col-span-2 bg-paper/50 px-5 pt-4 text-xs font-bold tracking-wider text-muted uppercase md:col-span-1 md:bg-transparent md:p-5 md:text-sm md:tracking-normal md:text-ink md:normal-case">{k}</div>
-          <div class="flex gap-2 p-5 text-sm text-muted md:pt-5"><span class="text-red" aria-label="Não">✕</span>{a}</div>
-          <div class="flex gap-2 bg-ok/5 p-5 text-sm"><span class="font-bold text-ok" aria-label="Sim">✓</span>{b}</div>
+          <div class="flex gap-2 p-5 text-sm text-muted md:pt-5"><span class="text-red" aria-hidden="true">✕</span><span class="sr-only">Sozinho:</span>{a}</div>
+          <div class="flex gap-2 bg-ok/5 p-5 text-sm"><span class="font-bold text-ok" aria-hidden="true">✓</span><span class="sr-only">Com o Código:</span>{b}</div>
         </div>
       ))}
     </div>

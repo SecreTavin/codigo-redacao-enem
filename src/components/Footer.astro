@@ -1,14 +1,43 @@
 ---
-import { site } from '../config/site';
+import { site, hasAnalytics, supportContact } from '../config/site';
 const year = new Date().getFullYear();
+const { seller } = site;
 ---
 
-<footer class="bg-ink pt-12 pb-28 text-sm text-paper/50 md:pb-12">
-  <div class="container-x flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-    <p>© {year} {site.productName}. Todos os direitos reservados.</p>
-    <p class="max-w-xl text-xs leading-relaxed text-paper/40">
-      Material educacional independente, sem vínculo com o Inep ou o MEC. Não garantimos nota ou aprovação.
-      Dados públicos divulgados pelo Inep. Pagamento processado pela Kiwify.
-    </p>
+<footer class="bg-ink pt-12 pb-28 text-sm text-paper/70 md:pb-12">
+  <div class="container-x grid gap-8 md:grid-cols-[1fr_auto] md:items-start">
+    <div class="space-y-3">
+      <p class="font-semibold text-paper">{site.productName}</p>
+      {(seller.name || seller.document) && (
+        <p class="text-paper/60">
+          Vendido por {seller.name}{seller.document && <> · CPF/CNPJ {seller.document}</>}
+          {seller.address && <><br />{seller.address}</>}
+        </p>
+      )}
+      {supportContact && (
+        <p class="text-paper/60">Atendimento: <a class="underline underline-offset-2 hover:text-paper" href={supportContact.href}>{supportContact.label}</a></p>
+      )}
+      <p class="max-w-xl text-xs leading-relaxed text-paper/55">
+        Material educacional independente, sem vínculo com o Inep ou o MEC. ENEM é marca do Inep. Não garantimos nota ou
+        aprovação. Dados públicos divulgados pelo Inep. Pagamento processado pela Kiwify.
+      </p>
+      <p class="text-xs text-paper/55">© {year} {site.productName}. Todos os direitos reservados.</p>
+    </div>
+    <nav aria-label="Documentos legais">
+      <ul class="flex flex-wrap gap-x-5 gap-y-2 md:flex-col md:items-end">
+        <li><a class="hover:text-paper hover:underline" href="/termos">Termos de compra</a></li>
+        <li><a class="hover:text-paper hover:underline" href="/privacidade">Política de privacidade</a></li>
+        {hasAnalytics && (
+          <li><button type="button" class="hover:text-paper hover:underline" data-consent-reset>Preferências de cookies</button></li>
+        )}
+      </ul>
+    </nav>
   </div>
 </footer>
+
+{hasAnalytics && (
+  <script>
+    import { resetConsent } from '../scripts/consent';
+    document.querySelector('[data-consent-reset]')?.addEventListener('click', resetConsent);
+  </script>
+)}
