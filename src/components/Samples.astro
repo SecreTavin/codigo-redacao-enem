@@ -1,0 +1,65 @@
+---
+const proposta = [
+  ['Agente', 'o Ministério da Educação'],
+  ['Ação', 'deve ampliar a formação de professores'],
+  ['Modo/meio', 'por meio de cursos a distância gratuitos'],
+  ['Finalidade', 'a fim de melhorar a leitura crítica'],
+  ['Detalhamento', 'já que a base escolar molda toda a trajetória'],
+];
+const zeros = ['Fuga total ao tema', 'Fora da estrutura dissertativo-argumentativa', 'Menos de 7 linhas', 'Cópia dos textos motivadores', 'Identificação fora do lugar'];
+const checklist = ['Li o tema e o recorte exato?', 'Minha tese está clara na introdução?', 'Cada parágrafo defende UMA ideia?', 'O repertório é produtivo?', 'Usei conectivos para encadear?', 'A proposta tem os 5 elementos?'];
+---
+
+<section class="container-x py-20 sm:py-28">
+  <div class="mx-auto max-w-3xl text-center">
+    <p class="eyebrow text-pen" data-reveal>Veja por dentro</p>
+    <h2 class="h-display mt-4 text-4xl sm:text-5xl" data-reveal>Feito para caber na memória sob pressão.</h2>
+    <p class="mt-5 text-lg text-muted" data-reveal>Tabelas, fórmulas e checklists. Amostras reais do material:</p>
+  </div>
+
+  <div class="mt-14 grid gap-6 lg:grid-cols-3">
+    <!-- Página 1 -->
+    <article class="relative rounded-2xl border border-ink/10 bg-white p-7 shadow-[0_24px_50px_-30px_rgb(18_24_43/0.45)] lg:-rotate-1" data-reveal>
+      <p class="eyebrow text-muted">Proposta de intervenção</p>
+      <h3 class="mt-2 font-display text-2xl font-semibold">Os 5 elementos, na ordem</h3>
+      <dl class="mt-5 space-y-2.5">
+        {proposta.map(([k, v], i) => (
+          <div class:list={['rounded-xl p-3', i === 2 || i === 4 ? 'bg-hl/40 ring-1 ring-hl' : 'bg-paper']}>
+            <dt class="text-xs font-bold tracking-wider text-muted uppercase">{k}</dt>
+            <dd class="text-sm">{v}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class="absolute -top-4 right-4 rotate-[6deg] rounded-md bg-white px-2 shadow-md font-hand text-2xl leading-6 text-red">os mais<br />esquecidos!</p>
+    </article>
+
+    <!-- Página 2 -->
+    <article class="relative rounded-2xl border border-ink/10 bg-white p-7 shadow-[0_24px_50px_-30px_rgb(18_24_43/0.45)] lg:translate-y-6" data-reveal style="--d:100ms">
+      <p class="eyebrow text-red">Os erros que zeram</p>
+      <h3 class="mt-2 font-display text-2xl font-semibold">Confira antes de entregar</h3>
+      <ul class="mt-5 space-y-3">
+        {zeros.map((z) => (
+          <li class="flex items-center gap-3 rounded-xl border border-red/15 bg-red/5 p-3 text-sm">
+            <span class="grid size-6 shrink-0 place-items-center rounded-full bg-red text-xs font-bold text-white">0</span>{z}
+          </li>
+        ))}
+      </ul>
+      <p class="mt-5 text-xs text-muted">Mais de 211 mil redações zeraram no ENEM 2025.</p>
+    </article>
+
+    <!-- Página 3 -->
+    <article class="ruled relative rounded-2xl border border-ink/10 p-7 pl-14 shadow-[0_24px_50px_-30px_rgb(18_24_43/0.45)] lg:rotate-1" data-reveal style="--d:200ms">
+      <p class="eyebrow text-ok">Checklist de autocorreção</p>
+      <h3 class="mt-2 font-display text-2xl font-semibold">Use em todo treino</h3>
+      <ul class="mt-5 space-y-3">
+        {checklist.map((c) => (
+          <li class="flex items-start gap-3 text-sm leading-snug">
+            <span class="mt-0.5 grid size-5 shrink-0 place-items-center rounded border-2 border-pen text-pen">
+              <svg class="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
+            </span>{c}
+          </li>
+        ))}
+      </ul>
+    </article>
+  </div>
+</section>

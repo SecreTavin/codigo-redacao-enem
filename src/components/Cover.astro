@@ -1,0 +1,41 @@
+---
+/** Capa do ebook desenhada em CSS — nítida em qualquer tela, zero KB de imagem. */
+interface Props { class?: string; size?: 'lg' | 'md' | 'sm' }
+const { class: cls = '', size = 'lg' } = Astro.props;
+const lg = size !== 'sm';
+---
+
+<div class:list={['relative [perspective:1400px]', cls]}>
+  <div
+    class:list={[
+      'relative aspect-[3/4] overflow-hidden rounded-r-xl rounded-l-sm bg-ink text-paper shadow-[18px_28px_50px_-18px_rgb(18_24_43/0.55)]',
+      '[transform:rotateY(-14deg)_rotateX(3deg)] transition-transform duration-700 hover:[transform:rotateY(-4deg)]',
+      size === 'lg' ? 'w-64 sm:w-72' : size === 'md' ? 'w-48 sm:w-56' : 'w-28',
+    ]}
+  >
+    <!-- lombada -->
+    <div class="absolute inset-y-0 left-0 w-3 bg-gradient-to-r from-black/50 to-transparent"></div>
+    <!-- pauta sutil -->
+    <div class="absolute inset-0 opacity-[0.07] [background:repeating-linear-gradient(transparent_0_22px,#fff_22px_23px)]"></div>
+    <div class:list={['relative flex h-full flex-col', size === 'lg' ? 'p-7' : size === 'md' ? 'p-5' : 'p-3']}>
+      <span class:list={['self-start rounded-full border border-hl/50 font-semibold tracking-[0.2em] text-hl uppercase', lg ? 'px-2.5 py-1 text-[0.6rem]' : 'px-1 text-[0.3rem]']}>
+        Método Anti-Zero
+      </span>
+      <div class:list={['mt-auto font-display leading-[0.9] font-semibold', size === 'lg' ? 'text-5xl' : size === 'md' ? 'text-4xl' : 'text-xl']}>
+        Código<br />Redação
+      </div>
+      <div class:list={['mt-2 flex items-baseline gap-2', lg ? '' : 'mt-1']}>
+        <span class:list={['bg-hl px-1.5 font-black tracking-tight text-ink', lg ? 'text-2xl' : 'text-[0.6rem]']}>ENEM 2026</span>
+      </div>
+      {lg && (
+        <p class="mt-6 border-t border-paper/15 pt-4 text-[0.7rem] leading-snug text-paper/60 uppercase tracking-wider">
+          Guia de resgate para quem tem pouco tempo
+        </p>
+      )}
+      <!-- nota zero riscada -->
+      <div class:list={['absolute font-hand text-red rotate-[-12deg]', lg ? 'top-14 right-5 text-5xl' : 'top-5 right-2 text-2xl']} aria-hidden="true">
+        <span class="relative">0<span class="absolute top-1/2 left-[-20%] h-[3px] w-[140%] -rotate-12 bg-red"></span></span>
+      </div>
+    </div>
+  </div>
+</div>

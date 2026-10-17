@@ -1,0 +1,78 @@
+---
+import BuyButton from './BuyButton.astro';
+import TrustRow from './TrustRow.astro';
+import Cover from './Cover.astro';
+---
+
+<section class="relative overflow-hidden grain">
+  <div class="container-x relative grid items-center gap-14 pt-10 pb-24 lg:grid-cols-[1.15fr_0.85fr] lg:pt-14 lg:pb-28">
+    <div>
+      <p class="eyebrow rounded-full border border-red/25 bg-red/5 px-3 py-1.5 text-red">
+        <span class="relative flex size-2"><span class="absolute inline-flex size-full animate-ping rounded-full bg-red opacity-60"></span><span class="relative inline-flex size-2 rounded-full bg-red"></span></span>
+        ENEM 2026 · faltam <span data-cd="d">--</span> dias
+      </p>
+
+      <h1 class="h-display mt-6 text-[2.5rem] leading-[1.04] sm:text-[3.4rem] xl:text-[3.75rem]">
+        211 mil redações tiraram{' '}
+        <span class="relative inline-block whitespace-nowrap">
+          zero
+          <svg class="draw pointer-events-none absolute -inset-x-4 -inset-y-3 h-[calc(100%+1.5rem)] w-[calc(100%+2rem)] text-red" viewBox="0 0 200 80" preserveAspectRatio="none" fill="none" aria-hidden="true">
+            <path pathLength="1" d="M168 14C120 2 40 6 16 26 -4 44 30 70 100 72c64 2 96-14 92-36-3-18-40-28-84-26" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" />
+          </svg>
+        </span>{' '}
+        no ENEM 2025.
+        <span class="mt-2 block text-muted">A sua <span class="hl text-ink">não precisa</span> ser a próxima.</span>
+      </h1>
+
+      <p class="mt-5 max-w-xl text-lg leading-relaxed text-muted">
+        O <strong class="text-ink">Código Redação</strong> é um método direto para quem tem pouco tempo: primeiro você
+        elimina os erros que zeram, depois aprende a estrutura que a banca premia.
+      </p>
+
+      <ul class="mt-6 grid gap-2.5 text-[0.98rem]">
+        {[
+          'Os erros que zeram — e como blindar seu texto',
+          'Método de 4 parágrafos + fórmulas ECT e TARP',
+          'Checklist para corrigir seu treino como a banca corrige',
+        ].map((t) => (
+          <li class="flex items-start gap-3">
+            <svg class="mt-0.5 size-5 shrink-0 text-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>
+            {t}
+          </li>
+        ))}
+      </ul>
+
+      <div class="mt-8 flex flex-col gap-4" id="hero-cta">
+        <BuyButton class="w-full sm:w-auto sm:self-start" source="hero" />
+        <p class="text-sm text-muted">Pagamento único · Ebook em PDF + app bônus com 7 dias grátis</p>
+        <TrustRow />
+      </div>
+    </div>
+
+    <!-- Visual: folha de redação corrigida + capa -->
+    <div class="relative mx-auto w-full max-w-md sm:pb-48 lg:max-w-none" aria-hidden="true">
+      <div class="ruled relative ml-auto w-[94%] rotate-[2deg] sm:rotate-[2.5deg] rounded-md border border-ink/10 p-6 pl-14 shadow-[0_30px_60px_-30px_rgb(18_24_43/0.45)]">
+        <div class="mb-3 flex items-center justify-between font-sans text-[0.6rem] font-bold tracking-widest text-muted uppercase">
+          <span>Folha de redação</span><span>Linha 01–30</span>
+        </div>
+        <div class="space-y-[0.72rem] font-hand text-[1.15rem] leading-[1.13rem] whitespace-nowrap text-pen sm:text-[1.32rem]">
+          <p>Na obra "Vidas Secas", Graciliano</p>
+          <p>Ramos retrata a invisibilidade...</p>
+          <p class="relative">Nesse sentido, <span class="decoration-red decoration-wavy decoration-2 underline">é importante</span></p>
+          <p>considerar que muitos fatores...</p>
+          <p>Portanto, o Governo deve agir</p>
+          <p class="relative">para resolver o problema.<span class="ml-1 text-red">✗</span></p>
+          <p class="opacity-40">_______________________</p>
+        </div>
+        <!-- anotações do corretor -->
+        <div class="absolute -right-2 top-[30%] rotate-[-4deg] rounded-md bg-white px-2.5 py-1 font-hand text-lg sm:text-xl text-red shadow-md sm:-right-8">genérico! C3</div>
+        <div class="absolute -right-1 -bottom-9 rotate-[3deg] rounded-md bg-white px-2.5 py-1 font-hand text-lg leading-5 text-red shadow-md sm:-right-6 sm:text-[1.35rem]">
+          cadê o <b>modo</b> e o<br />detalhamento? C5
+        </div>
+        <div class="absolute -top-5 -left-5 grid size-16 rotate-[-10deg] place-items-center rounded-full border-[3px] border-red bg-white font-hand text-3xl text-red shadow">560</div>
+      </div>
+
+      <Cover class="animate-float absolute bottom-0 left-0 hidden sm:block [--r:-6deg] sm:-left-6" size="md" />
+    </div>
+  </div>
+</section>

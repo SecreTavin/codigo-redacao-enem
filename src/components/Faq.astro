@@ -1,0 +1,38 @@
+---
+import { faq } from '../data/content';
+import { site } from '../config/site';
+const contact = site.supportWhatsapp
+  ? { href: `https://wa.me/${site.supportWhatsapp}`, label: 'Fale com a gente no WhatsApp' }
+  : site.supportEmail
+    ? { href: `mailto:${site.supportEmail}`, label: site.supportEmail }
+    : null;
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<section class="container-x py-20 sm:py-28" id="faq">
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+  <div class="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+    <div>
+      <p class="eyebrow text-pen" data-reveal>Dúvidas frequentes</p>
+      <h2 class="h-display mt-4 text-4xl sm:text-5xl" data-reveal>Perguntas que você provavelmente está fazendo agora.</h2>
+      {contact && (
+        <p class="mt-6 text-muted" data-reveal>Ainda com dúvida? <a class="font-semibold text-pen underline underline-offset-4" href={contact.href}>{contact.label}</a></p>
+      )}
+    </div>
+    <div class="divide-y divide-ink/10 border-y border-ink/10" data-faq>
+      {faq.map((f, i) => (
+        <details class="group py-1" open={i === 0} data-reveal style={`--d:${i * 40}ms`}>
+          <summary class="flex cursor-pointer items-center justify-between gap-6 py-5 text-lg font-semibold">
+            {f.q}
+            <span class="faq-icon grid size-8 shrink-0 place-items-center rounded-full border border-ink/15 text-xl transition-transform duration-300 group-open:bg-ink group-open:text-hl">+</span>
+          </summary>
+          <p class="pb-6 pr-12 leading-relaxed text-muted">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

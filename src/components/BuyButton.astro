@@ -1,0 +1,26 @@
+---
+import { site, brl } from '../config/site';
+
+interface Props {
+  label?: string;
+  showPrice?: boolean;
+  class?: string;
+  source?: string;
+}
+const { label = 'Quero o Código Redação', showPrice = true, class: cls = '', source = 'cta' } = Astro.props;
+const href = site.checkoutUrl || '#oferta';
+---
+
+<a
+  href={href}
+  data-checkout
+  data-source={source}
+  class:list={['btn-buy group', cls]}
+  rel={site.checkoutUrl ? 'noopener' : undefined}
+>
+  <span>{label}</span>
+  {showPrice && (
+    <span class="rounded-lg bg-ink px-2.5 py-1 text-sm font-bold text-hl tabular-nums">{brl(site.price)}</span>
+  )}
+  <svg class="hidden size-5 transition sm:block-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+</a>

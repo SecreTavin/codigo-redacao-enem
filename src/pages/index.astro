@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Stats from '../components/Stats.astro';
+import Problem from '../components/Problem.astro';
+import Method from '../components/Method.astro';
+import Quiz from '../components/Quiz.astro';
+import Modules from '../components/Modules.astro';
+import Samples from '../components/Samples.astro';
+import Compare from '../components/Compare.astro';
+import Audience from '../components/Audience.astro';
+import Offer from '../components/Offer.astro';
+import Faq from '../components/Faq.astro';
+import FinalCta from '../components/FinalCta.astro';
+import Footer from '../components/Footer.astro';
+import StickyBar from '../components/StickyBar.astro';
+---
+
+<Base>
+  <Header />
+  <main>
+    <Hero />
+    <Stats />
+    <Problem />
+    <Method />
+    <Quiz />
+    <Modules />
+    <Samples />
+    <Compare />
+    <Audience />
+    <Offer />
+    <Faq />
+    <FinalCta />
+  </main>
+  <Footer />
+  <StickyBar />
+</Base>
+
+<script>
+  import '../scripts/main.ts';
+</script>

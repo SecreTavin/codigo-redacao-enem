@@ -1,0 +1,50 @@
+---
+import { quiz } from '../data/content';
+import BuyButton from './BuyButton.astro';
+---
+
+<section class="container-x py-20 sm:py-28" id="diagnostico">
+  <div class="mx-auto max-w-3xl">
+    <div class="text-center">
+      <p class="eyebrow text-red" data-reveal>Diagnóstico de 30 segundos</p>
+      <h2 class="h-display mt-4 text-4xl sm:text-5xl" data-reveal>Sua redação está blindada contra o zero?</h2>
+      <p class="mt-5 text-lg text-muted" data-reveal>Responda com sinceridade. Ninguém está vendo.</p>
+    </div>
+
+    <form class="ruled mt-12 rounded-2xl border border-ink/10 p-5 pl-14 shadow-[0_30px_60px_-34px_rgb(18_24_43/0.4)] sm:p-8 sm:pl-16" data-quiz data-reveal>
+      <ol class="space-y-5">
+        {quiz.map((item, i) => (
+          <li class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between" data-fix={item.fix}>
+            <p class="font-medium leading-snug"><span class="mr-1 font-hand text-xl text-red">{i + 1}.</span> {item.q}</p>
+            <fieldset class="flex shrink-0 gap-2">
+              <legend class="sr-only">{item.q}</legend>
+              {['sim', 'nao'].map((v) => (
+                <label class="cursor-pointer">
+                  <input type="radio" name={`q${i}`} value={v} class="peer sr-only" />
+                  <span class:list={[
+                    'inline-flex min-w-16 justify-center rounded-xl border-2 border-ink/15 bg-white px-4 py-2 text-sm font-semibold transition',
+                    'peer-focus-visible:ring-2 peer-focus-visible:ring-pen hover:border-ink/40',
+                    v === 'sim' ? 'peer-checked:border-ok peer-checked:bg-ok peer-checked:text-white' : 'peer-checked:border-red peer-checked:bg-red peer-checked:text-white',
+                  ]}>{v === 'sim' ? 'Sim' : 'Não'}</span>
+                </label>
+              ))}
+            </fieldset>
+          </li>
+        ))}
+      </ol>
+
+      <div class="mt-8 hidden rounded-2xl bg-ink p-6 text-paper" data-quiz-result aria-live="polite">
+        <div class="flex items-center gap-4">
+          <div class="grid size-16 shrink-0 rotate-[-8deg] place-items-center rounded-full border-[3px] border-hl font-hand text-3xl text-hl" data-quiz-score></div>
+          <div>
+            <p class="font-display text-xl font-semibold" data-quiz-title></p>
+            <p class="mt-1 text-sm text-paper/70" data-quiz-text></p>
+          </div>
+        </div>
+        <ul class="mt-5 grid gap-2 text-sm" data-quiz-fixes></ul>
+        <div class="mt-6"><BuyButton class="w-full" label="Corrigir isso agora" source="quiz" /></div>
+      </div>
+      <p class="mt-6 text-center text-sm text-muted" data-quiz-hint>Responda as 5 para ver seu resultado.</p>
+    </form>
+  </div>
+</section>

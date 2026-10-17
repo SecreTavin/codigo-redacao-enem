@@ -1,0 +1,24 @@
+---
+import { site } from '../config/site';
+interface Props { dark?: boolean; class?: string }
+const { dark = false, class: cls = '' } = Astro.props;
+const items = [
+  { icon: 'lock', text: 'Pagamento seguro via Cakto' },
+  { icon: 'bolt', text: 'Acesso após a confirmação' },
+  ...(site.guaranteeDays ? [{ icon: 'shield', text: `${site.guaranteeDays} dias para desistir` }] : []),
+];
+const paths: Record<string, string> = {
+  lock: 'M7 11V8a5 5 0 0 1 10 0v3M5 11h14v10H5z',
+  bolt: 'M13 2 4 14h7l-1 8 9-12h-7z',
+  shield: 'M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6zM9 12l2 2 4-4',
+};
+---
+
+<ul class:list={['flex flex-wrap gap-x-5 gap-y-2 text-sm', dark ? 'text-paper/70' : 'text-muted', cls]}>
+  {items.map((i) => (
+    <li class="flex items-center gap-1.5">
+      <svg class:list={['size-4 shrink-0', dark ? 'text-hl' : 'text-ok']} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={paths[i.icon]} /></svg>
+      {i.text}
+    </li>
+  ))}
+</ul>

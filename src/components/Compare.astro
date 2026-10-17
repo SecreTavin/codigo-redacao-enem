@@ -1,0 +1,28 @@
+---
+import { compare } from '../data/content';
+---
+
+<section class="border-y border-ink/10 bg-paper-2/60">
+  <div class="container-x py-20 sm:py-28">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="eyebrow text-pen" data-reveal>Comparativo honesto</p>
+      <h2 class="h-display mt-4 text-4xl sm:text-5xl" data-reveal>Mesmo esforço. Direção diferente.</h2>
+      <p class="mt-5 text-lg text-muted" data-reveal>Sem promessa de nota. A diferença é quanto do seu estudo vira ponto.</p>
+    </div>
+
+    <div class="mt-14 overflow-hidden rounded-3xl border border-ink/10 bg-white shadow-[0_24px_50px_-34px_rgb(18_24_43/0.4)]" data-reveal>
+      <div class="grid grid-cols-[1fr_1fr] text-sm font-semibold md:grid-cols-[0.6fr_1fr_1fr]">
+        <div class="hidden bg-paper p-5 md:block"></div>
+        <div class="bg-paper p-5 text-muted">Sozinho, sem direção</div>
+        <div class="bg-ink p-5 text-hl">Com o Código Redação</div>
+      </div>
+      {compare.map(([k, a, b]) => (
+        <div class="grid grid-cols-[1fr_1fr] border-t border-ink/10 md:grid-cols-[0.6fr_1fr_1fr]">
+          <div class="col-span-2 bg-paper/50 px-5 pt-4 text-xs font-bold tracking-wider text-muted uppercase md:col-span-1 md:bg-transparent md:p-5 md:text-sm md:tracking-normal md:text-ink md:normal-case">{k}</div>
+          <div class="flex gap-2 p-5 text-sm text-muted md:pt-5"><span class="text-red" aria-label="Não">✕</span>{a}</div>
+          <div class="flex gap-2 bg-ok/5 p-5 text-sm"><span class="font-bold text-ok" aria-label="Sim">✓</span>{b}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

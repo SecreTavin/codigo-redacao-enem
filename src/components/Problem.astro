@@ -1,0 +1,33 @@
+---
+import { pains } from '../data/content';
+---
+
+<section class="container-x py-20 sm:py-28" id="conteudo">
+  <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+    <div class="lg:sticky lg:top-28 lg:self-start">
+      <p class="eyebrow text-red" data-reveal>O problema</p>
+      <h2 class="h-display mt-4 text-4xl leading-tight sm:text-5xl" data-reveal>
+        Redação não é loteria. Ela pune <span class="hl">os mesmos erros</span> todo ano.
+      </h2>
+      <p class="mt-6 text-lg leading-relaxed text-muted" data-reveal>
+        211 mil zeros e só 10 notas mil não vêm de azar — vêm de erros que se repetem. E o que se repete pode ser corrigido.
+      </p>
+      <p class="mt-8 font-hand text-3xl leading-tight text-pen" data-reveal>
+        "Não sei escrever" quase sempre é<br />"ninguém me mostrou onde perco ponto."
+      </p>
+    </div>
+
+    <div class="grid gap-4 sm:grid-cols-2">
+      {pains.map((p, i) => (
+        <article class="card group relative overflow-hidden" data-reveal style={`--d:${i * 80}ms`}>
+          <span class="font-hand text-4xl text-red/80">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="mt-2 text-xl font-semibold">{p.title}</h3>
+          <p class="mt-2 leading-relaxed text-muted">{p.text}</p>
+        </article>
+      ))}
+      <div class="rounded-3xl border-2 border-dashed border-red/30 p-6 sm:col-span-2" data-reveal>
+        <p class="font-semibold text-red">Cada dia sem treino direcionado é uma redação a menos antes da prova.</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,14 @@
+---
+import { site } from '../config/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-ink pt-12 pb-28 text-sm text-paper/50 md:pb-12">
+  <div class="container-x flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+    <p>© {year} {site.productName}. Todos os direitos reservados.</p>
+    <p class="max-w-xl text-xs leading-relaxed text-paper/40">
+      Material educacional independente, sem vínculo com o Inep ou o MEC. Não garantimos nota ou aprovação.
+      Dados públicos divulgados pelo Inep. Pagamento processado pela Cakto.
+    </p>
+  </div>
+</footer>

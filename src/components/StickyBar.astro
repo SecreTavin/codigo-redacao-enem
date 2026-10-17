@@ -1,0 +1,19 @@
+---
+import { site, brl } from '../config/site';
+const href = site.checkoutUrl || '#oferta';
+---
+
+<!-- Barra de compra fixa no mobile: aparece após o hero e some na seção de oferta -->
+<div
+  class="fixed inset-x-0 bottom-0 z-40 translate-y-full border-t border-ink/10 bg-paper/95 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-12px_30px_-12px_rgb(18_24_43/0.25)] backdrop-blur-md transition-transform duration-300 data-[show=true]:translate-y-0 md:hidden"
+  data-sticky
+  aria-hidden="true"
+>
+  <div class="flex items-center gap-3">
+    <div class="min-w-0 flex-1">
+      <p class="truncate text-xs text-muted">Código Redação · pagamento único</p>
+      <p class="font-display text-xl font-semibold tabular-nums">{brl(site.price)}</p>
+    </div>
+    <a href={href} data-checkout data-source="sticky" tabindex="-1" class="btn-buy !px-5 !py-3 !text-base">Comprar agora</a>
+  </div>
+</div>

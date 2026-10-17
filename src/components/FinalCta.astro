@@ -1,0 +1,29 @@
+---
+import { site } from '../config/site';
+import BuyButton from './BuyButton.astro';
+import TrustRow from './TrustRow.astro';
+const units = [['d', 'dias'], ['h', 'horas'], ['m', 'min'], ['s', 'seg']];
+---
+
+<section class="relative overflow-hidden border-t border-ink/10 bg-paper-2/60 grain">
+  <div class="container-x relative py-20 text-center sm:py-28">
+    <p class="eyebrow text-red" data-reveal>Redação em {site.examDateLabel}</p>
+    <h2 class="h-display mx-auto mt-5 max-w-4xl text-4xl leading-tight sm:text-6xl" data-reveal>
+      Você vai estar diante da folha. <span class="hl">Com ou sem método?</span>
+    </h2>
+
+    <div class="mx-auto mt-12 grid max-w-xl grid-cols-4 gap-3" data-countdown="full" data-reveal>
+      {units.map(([k, label]) => (
+        <div class="rounded-2xl bg-ink py-5 text-paper">
+          <span class="block font-display text-4xl font-semibold tabular-nums sm:text-5xl" data-cd={k}>--</span>
+          <span class="text-xs tracking-wider text-paper/50 uppercase">{label}</span>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 flex flex-col items-center gap-4" data-reveal>
+      <BuyButton source="final" />
+      <TrustRow class="justify-center" />
+    </div>
+  </div>
+</section>

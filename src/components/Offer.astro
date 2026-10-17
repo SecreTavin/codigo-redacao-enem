@@ -1,0 +1,68 @@
+---
+import { site, brl } from '../config/site';
+import BuyButton from './BuyButton.astro';
+import TrustRow from './TrustRow.astro';
+import Cover from './Cover.astro';
+
+const [reais, centavos] = site.price.toFixed(2).split('.');
+const items = [
+  { title: 'Ebook Código Redação ENEM 2026 (PDF)', text: '12 blocos: competências, erros que zeram, 4 parágrafos, ECT e TARP, repertório por eixo, proposta completa e Plano de Resgate.' },
+  { title: 'Checklists e tabelas prontas', text: 'Autocorreção nos critérios da banca, para usar em todo treino.' },
+  { title: `Bônus: ${site.appName} — 7 dias grátis`, text: 'Treine no celular, nos intervalos, no ônibus, na fila. Ler não é treinar.', bonus: true },
+];
+---
+
+<section class="relative overflow-hidden bg-ink py-20 text-paper sm:py-28" id="oferta">
+  <div class="pointer-events-none absolute -top-40 left-1/2 size-[42rem] -translate-x-1/2 rounded-full bg-pen/30 blur-3xl" aria-hidden="true"></div>
+  <div class="container-x relative">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="eyebrow text-hl" data-reveal>Oferta única · pagamento único</p>
+      <h2 class="h-display mt-4 text-4xl sm:text-5xl" data-reveal>Tudo o que você precisa até 8 de novembro.</h2>
+    </div>
+
+    <div class="mx-auto mt-14 grid max-w-5xl overflow-hidden rounded-[2rem] bg-paper text-ink shadow-2xl lg:grid-cols-[1.15fr_0.85fr]" data-reveal>
+      <div class="p-7 sm:p-10">
+        <div class="flex items-center gap-5">
+          <Cover size="sm" />
+          <div>
+            <p class="font-display text-2xl font-semibold leading-tight">{site.productName}</p>
+            <p class="text-muted">{site.tagline}</p>
+          </div>
+        </div>
+        <ul class="mt-8 space-y-5">
+          {items.map((i) => (
+            <li class="flex gap-4">
+              <span class:list={['mt-0.5 grid size-7 shrink-0 place-items-center rounded-full text-sm font-bold', i.bonus ? 'bg-hl text-ink' : 'bg-ok text-white']}>{i.bonus ? '+' : '✓'}</span>
+              <div>
+                <p class="font-semibold">{i.title}{i.bonus && <span class="ml-2 rounded-md bg-hl/50 px-1.5 py-0.5 text-xs font-bold uppercase">Bônus</span>}</p>
+                <p class="mt-1 text-sm leading-relaxed text-muted">{i.text}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="flex flex-col justify-center gap-5 border-t border-ink/10 bg-white p-7 sm:p-10 lg:border-t-0 lg:border-l">
+        <div>
+          {site.anchorPrice && <p class="text-muted">De <s>{brl(site.anchorPrice)}</s> por</p>}
+          <p class="text-sm font-semibold tracking-wider text-muted uppercase">Acesso completo por</p>
+          <p class="mt-1 flex items-start font-display font-semibold leading-none">
+            <span class="mt-2 text-2xl">R$</span>
+            <span class="text-7xl tracking-tight tabular-nums">{reais}</span>
+            <span class="mt-2 text-3xl">,{centavos}</span>
+          </p>
+          <p class="mt-2 text-sm text-muted">Pagamento único · sem mensalidade</p>
+        </div>
+        <BuyButton class="w-full" label="Quero meu acesso" showPrice={false} source="offer" />
+        <TrustRow class="flex-col !gap-2" />
+        {site.guaranteeDays && (
+          <div class="flex items-center gap-3 rounded-2xl bg-paper p-4 text-sm">
+            <span class="grid size-12 shrink-0 rotate-[-8deg] place-items-center rounded-full border-2 border-dashed border-ok font-display text-lg font-bold text-ok">{site.guaranteeDays}d</span>
+            <p class="leading-snug text-muted"><strong class="text-ink">Risco zero.</strong> Se não for para você, peça o reembolso em até {site.guaranteeDays} dias.</p>
+          </div>
+        )}
+      </div>
+    </div>
+    <p class="mt-8 text-center text-sm text-paper/50" data-reveal>Menos que uma pizza, para treinar com método até a prova que mais pesa na sua nota.</p>
+  </div>
+</section>

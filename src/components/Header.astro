@@ -1,0 +1,27 @@
+---
+import { site, brl } from '../config/site';
+const href = site.checkoutUrl || '#oferta';
+---
+
+<header class="sticky top-0 z-50 border-b border-ink/10 bg-paper/85 backdrop-blur-md">
+  <div class="container-x flex h-16 items-center justify-between gap-4">
+    <a href="#" class="flex items-center gap-2 font-display text-lg font-semibold tracking-tight">
+      <span class="grid size-8 place-items-center rounded-lg bg-ink font-hand text-xl text-hl">C</span>
+      <span class="hidden sm:inline">Código Redação</span>
+    </a>
+
+    <div class="flex items-center gap-2 text-sm text-muted" aria-live="off">
+      <span class="hidden md:inline">Redação em</span>
+      <div class="flex items-center gap-1 font-semibold text-ink tabular-nums" data-countdown="compact">
+        <span data-cd="d">--</span><span class="text-muted">d</span>
+        <span data-cd="h">--</span><span class="text-muted">h</span>
+        <span data-cd="m">--</span><span class="text-muted">m</span>
+        <span data-cd="s" class="hidden sm:inline">--</span><span class="hidden text-muted sm:inline">s</span>
+      </div>
+    </div>
+
+    <a href={href} data-checkout data-source="header" class="rounded-xl bg-ink px-4 py-2 text-sm font-semibold text-paper transition hover:bg-ink-2">
+      Comprar <span class="hidden text-hl sm:inline">· {brl(site.price)}</span>
+    </a>
+  </div>
+</header>

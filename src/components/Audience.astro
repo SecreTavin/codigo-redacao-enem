@@ -1,0 +1,24 @@
+---
+import { forYou, notForYou } from '../data/content';
+---
+
+<section class="container-x py-20 sm:py-28">
+  <div class="mx-auto max-w-3xl text-center">
+    <p class="eyebrow text-red" data-reveal>Sem enrolação</p>
+    <h2 class="h-display mt-4 text-4xl sm:text-5xl" data-reveal>Para quem é — e para quem não é.</h2>
+  </div>
+  <div class="mt-14 grid gap-6 md:grid-cols-2">
+    <div class="card border-ok/25 bg-ok/[0.04]" data-reveal>
+      <h3 class="flex items-center gap-2 text-lg font-semibold text-ok">
+        <span class="grid size-7 place-items-center rounded-full bg-ok text-white">✓</span> É para você se…
+      </h3>
+      <ul class="mt-5 space-y-3">{forYou.map((t) => <li class="flex gap-3 leading-snug"><span class="text-ok">→</span>{t}</li>)}</ul>
+    </div>
+    <div class="card" data-reveal style="--d:100ms">
+      <h3 class="flex items-center gap-2 text-lg font-semibold text-muted">
+        <span class="grid size-7 place-items-center rounded-full bg-ink/10 text-ink">✕</span> Não é para você se…
+      </h3>
+      <ul class="mt-5 space-y-3 text-muted">{notForYou.map((t) => <li class="flex gap-3 leading-snug"><span>→</span>{t}</li>)}</ul>
+    </div>
+  </div>
+</section>
