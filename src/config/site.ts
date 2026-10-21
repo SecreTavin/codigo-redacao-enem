@@ -10,7 +10,7 @@ export const site = {
   description:
     'Ebook direto ao ponto para evitar os erros que zeram a redação do ENEM e treinar do jeito que a banca corrige. Método de 4 parágrafos, fórmulas ECT e TARP e checklist de autocorreção.',
 
-  price: 49.9,
+  price: 24.9,
   /** Preço "âncora" opcional (ex.: 97). Deixe null para não exibir. */
   anchorPrice: null as number | null,
 
